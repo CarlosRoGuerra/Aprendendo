@@ -43,3 +43,17 @@ func BuscaTodosOsjogos() []Jogo {
 	defer db.Close()
 	return jogos
 }
+
+func CriarNovoJogo(nome, genero string, preco float64, plataforma string) {
+	db := db.ConectaComBancoDeDados()
+
+	insereDadosNoBanco, err := db.Prepare("insert into jogos(nome, genero, preco, plataforma) values($1, $2, $3, $4)")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	insereDadosNoBanco.Exec(nome, genero, preco, plataforma)
+
+	defer db.Close()
+}
