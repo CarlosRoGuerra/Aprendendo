@@ -13,12 +13,21 @@ var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	todosOsjogos := models.BuscaTodosOsjogos()
+<<<<<<< HEAD
 	temp.ExecuteTemplate(w, "Index", todosOsjogos)
 }
 
 func New(w http.ResponseWriter, r *http.Request) {
 	temp.ExecuteTemplate(w, "New", nil)
 }
+=======
+ 	temp.ExecuteTemplate(w, "Index", todosOsjogos)
+ }
+
+func New(w http.ResponseWriter, r *http.Request) {
+ 	temp.ExecuteTemplate(w, "New", nil)
+ }
+>>>>>>> a781e19743a00cb9668900c168520248772941d7
 
 func Insert(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
