@@ -11,14 +11,14 @@ import (
 
 var temp = template.Must(template.ParseGlob("templates/*.html"))
 
-// func Index(w http.ResponseWriter, r *http.Request) {
-// 	todosOsjogos := models.BuscaTodosOsjogos()
-// 	temp.ExecuteTemplate(w, "Index", todosOsjogos)
-// }
+func Index(w http.ResponseWriter, r *http.Request) {
+	todosOsjogos := models.BuscaTodosOsjogos()
+	temp.ExecuteTemplate(w, "Index", todosOsjogos)
+}
 
-// func New(w http.ResponseWriter, r *http.Request) {
-// 	temp.ExecuteTemplate(w, "New", nil)
-// }
+func New(w http.ResponseWriter, r *http.Request) {
+	temp.ExecuteTemplate(w, "New", nil)
+}
 
 func Insert(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
