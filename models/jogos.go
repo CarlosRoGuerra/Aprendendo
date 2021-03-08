@@ -25,14 +25,15 @@ func BuscaTodosOsjogos() []Jogo {
 	jogos := []Jogo{}
 
 	for selectDeTodosOsJogos.Next() {
-		var id int
+		var Id int
 		var nome, genero, plataforma string
 		var preco float64
 
-		err = selectDeTodosOsJogos.Scan(&id, &nome, &genero, &plataforma, &preco)
+		err = selectDeTodosOsJogos.Scan(&Id, &nome, &genero, &plataforma, &preco)
 		if err != nil {
 			panic(err.Error())
 		}
+		p.Id = id
 		p.Nome = nome
 		p.Genero = genero
 		p.Plataforma = plataforma
