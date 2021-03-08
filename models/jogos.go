@@ -92,6 +92,7 @@ func EditaJogo(id string) Jogo {
 		if err != nil {
 			panic(err.Error())
 		}
+		jogoParaAtualizar.Id = id
 		jogoParaAtualizar.Nome = nome
 		jogoParaAtualizar.Genero = genero
 		jogoParaAtualizar.Preco = preco
@@ -99,4 +100,16 @@ func EditaJogo(id string) Jogo {
 	}
 	defer db.Close()
 	return jogoParaAtualizar
+}
+
+func AtualizaJogo(id int, nome, plataforma, genero string, preco float64) {
+	db := db.ConectaComBancoDeDados()
+
+	AtualizaJogo, err := db.Prepare("update jogos set nome=$1, genero=$2, preco=$3, plataforma=$4 where id=$5")
+
+	if err != nil {
+		panic(err.Error())
+	}
+	AtualizaJogo.Exec(nome, genero, preco, plataforma, id)
+	defer db.Close()
 }

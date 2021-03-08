@@ -50,3 +50,25 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	temp.ExecuteTemplate(w, "Edit", jogo)
 
 }
+
+func Update(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		id := r.FormValue("id")
+		nome := r.FormValue("nome")
+		genero := r.FormValue("genero")
+		preco := r.FormValue("preco")
+		plataforma := r.FormValue("plataforma")
+
+		idConvertInt, err := strconv.Atoi(id)
+		if err != nil {
+			log.Println("erro de conversao no id:", err)
+		}
+		precoParaFloar, err := strconv.ParseFloat(preco, 64)
+
+		if err != nil {
+			log.Println("deu ruim no preco:", err)
+		}
+		models.AtualizaJogo(idConvertInt, nome, genero, precoParaFloar, plataforma)
+	}
+	http.Redirect(w, r, "/", 301)
+}
