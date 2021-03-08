@@ -68,7 +68,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println("deu ruim no preco:", err)
 		}
-		models.AtualizaJogo(idConvertInt, nome, genero, precoParaFloar, plataforma)
+		models.AtualizaJogo(idConvertInt, nome, genero, plataforma, precoParaFloar)
 	}
 	http.Redirect(w, r, "/", 301)
 }
