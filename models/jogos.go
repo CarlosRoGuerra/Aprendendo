@@ -58,3 +58,16 @@ func CriarNovoJogo(nome, genero string, preco float64, plataforma string) {
 
 	defer db.Close()
 }
+
+func DeletaJogo(id string) {
+	db := db.ConectaComBancoDeDados()
+
+	deletarOJogo, err := db.Prepare("delete from jogos where id=$1")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	deletarOJogo.Exec(id)
+	defer db.Close()
+}
