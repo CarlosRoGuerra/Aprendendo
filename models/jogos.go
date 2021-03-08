@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/CarlosRoGuerra/Aprendendo/db"
+	"github.com/CarlosRoGuerra/Go_Wep_App-Cr/db"
 )
 
 type Jogo struct {
