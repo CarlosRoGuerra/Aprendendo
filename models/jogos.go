@@ -5,7 +5,7 @@ import (
 )
 
 type Jogo struct {
-	id     int
+	Id     int
 	Nome   string
 	Genero string
 	Preco  float64
@@ -25,11 +25,11 @@ func BuscaTodosOsjogos() []Jogo {
 	jogos := []Jogo{}
 
 	for selectDeTodosOsJogos.Next() {
-		var Id int
+		var id int
 		var nome, genero, plataforma string
 		var preco float64
 
-		err = selectDeTodosOsJogos.Scan(&Id, &nome, &genero, &plataforma, &preco)
+		err = selectDeTodosOsJogos.Scan(&id, &nome, &genero, &plataforma, &preco)
 		if err != nil {
 			panic(err.Error())
 		}
