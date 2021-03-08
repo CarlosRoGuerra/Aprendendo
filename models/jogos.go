@@ -71,3 +71,32 @@ func DeletaJogo(id string) {
 	deletarOJogo.Exec(id)
 	defer db.Close()
 }
+
+func EditaJogo(id string) Jogo {
+	db := db.ConectaComBancoDeDados()
+
+	jogoDoBanco, err := db.Query("select from jogos where id=$1", id)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	jogoParaAtualizar := Jogo{}
+
+	for jogoDoBanco.Next() {
+		var id int
+		var nome, genero, plataforma string
+		var preco float64
+
+		err = jogoDoBanco.Scan(&id, &nome, &genero, &preco, &plataforma)
+		if err != nil {
+			panic(err.Error())
+		}
+		jogoParaAtualizar.Nome = nome
+		jogoParaAtualizar.Genero = genero
+		jogoParaAtualizar.Preco = preco
+		jogoParaAtualizar.Plataforma = plataforma
+	}
+	defer db.Close()
+	return jogoParaAtualizar
+}
